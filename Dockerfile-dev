@@ -1,0 +1,8 @@
+FROM --platform=linux/amd64 node:lts-alpine3.14
+WORKDIR /app
+COPY . .
+RUN yarn install && yarn cache clean
+RUN apk add --no-cache tzdata
+ENV TZ=America/Sao_Paulo
+EXPOSE 3333
+CMD ["node", "ace", "serve"]
